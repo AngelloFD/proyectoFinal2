@@ -7,7 +7,7 @@ def TUTORIAL():
             print("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-") 
             print("En el juego de orden tienes")
             print("que conseguir que todos los",end=" ")
-            print("    1 2 3")
+            print("        1 2 3")
             print("los números en la mesa sean",end=" ")
             print("      A 1 1 1")
             print("1, indicando el punto según",end=" ")
