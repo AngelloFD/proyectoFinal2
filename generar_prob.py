@@ -1,6 +1,9 @@
+import random
 CodPrm=0
-GProblemas=0
-def CodPrm(num):
+print (CodPrm)
+CodPrm = GProblema(random(1,5))
+
+def GProblema(num):
     while num>0:
         if num==1:
             CodPrm="0011001110110001011000010"
