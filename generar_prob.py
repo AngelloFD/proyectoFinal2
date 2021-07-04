@@ -1,7 +1,4 @@
 import random
-CodPrm=0
-print (CodPrm)
-CodPrm = GProblema(random(1,5))
 
 def GProblema(num):
     while num>0:
@@ -23,3 +20,8 @@ def GProblema(num):
         else:
             print("No se ingresó generador de problema válido")
     return num
+
+CodPrm=0
+print (CodPrm)
+CodPrm = GProblema(random(1,5))
+
