@@ -1,0 +1,36 @@
+import os
+import time
+def TUTORIAL():
+    for i in range (4):
+        os.system("cls")
+        if i % 2==0:
+            print("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-") 
+            print("En el juego de orden tienes")
+            print("que conseguir que todos los",end=" ")
+            print("    1 2 3")
+            print("los números en la mesa sean",end=" ")
+            print("      A 1 1 1")
+            print("1, indicando el punto según",end=" ")
+            print("      B 1 1 1")
+            print("la FILA y COLUMNA, como el",end=" ")
+            print("       C 1 1 1")
+            print("ejemplo de la derecha",end=" ")
+            print("             -B2-")
+        else:
+            print("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-")
+            print("En el juego de orden tienes")
+            print("que conseguir que todos los",end=" ")
+            print("        1 2 3")
+            print("los números en la mesa sean",end=" ")
+            print("      A 1 0 1" )
+            print("1, indicando el punto según",end=" ")
+            print("      B 0 0 0")
+            print("la FILA y COLUMNA, como el",end=" ")
+            print("       C 1 0 1")
+            print("ejemplo de la derecha",end=" ")
+            print("             -B2-")
+        time.sleep(2)
+    time.sleep(2)
+    print("¿listo?")
+    time.sleep(3)
+TUTORIAL()
