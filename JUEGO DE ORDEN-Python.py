@@ -80,7 +80,7 @@ def GProblema(num):         #GENERADOR DE PROBLEMAS
         Cod="1100010101001110100000000"
         # d3 + a4 + e5 + c2 + e1
     elif num==30:
-        Cod="0000000000000000000000000"
+        Cod="0011101111111111111111111"
         # Código para Debug
     else:
         print("No se ingresó generador de problema válido")
@@ -99,7 +99,8 @@ for x in CodProblema:
 
 
 while True:
-
+    
+    os.system("cls")
     #Impresora del Problema
     print ("     1  2  3  4  5")
     for x in range(5):
@@ -114,7 +115,7 @@ while True:
     rpta = str(input())
     
     #Se califica si es reset, entonces se regresa la lista a inicial
-    if rpta=="reset":
+    if rpta=="reset" or rpta=="RESET":
         print ("R E I N I C I A N D O...")
         time.sleep(2)
         del ProblemaL[:]
@@ -172,3 +173,24 @@ while True:
                 ProblemaL[n]="0"
             else:
                 ProblemaL[n]="1"
+
+    #Se valida si el problema está completado
+    ValP = 1
+    for x in ProblemaL:
+        ValP = ValP*int(x)
+    if ValP==1:
+        break
+
+
+# Desde aquí, se terminó satisfactoriamente el juego
+os.system("cls")
+print ("-_-_-_-_-_-_ FELICIDADES _-_-_-_-_-_-")
+print ("")
+print ("     1  2  3  4  5")
+for x in range(5):
+    print (letras[x], " - ", end ='')
+    for y in range(5):
+        print (ProblemaL[(x*5+y)], " ", end = '')
+    print ("")
+print ("")
+print (" _-_- GANASTE -_-_ ")
