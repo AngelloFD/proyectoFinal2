@@ -1,8 +1,9 @@
 #JUEGO DE ORDEN
 import os
 import time
+import random
 
-def TUTORIAL():                     # TUTORIAL
+def Tutorial():             #TUTORIAL
     for i in range (4):
         os.system("cls")
         if i % 2==0:
@@ -51,72 +52,123 @@ def validar(rpta):          #VALIDACIÓN DE RPTA
 
     return vera             #FIN DE VALIDACION RPTA
 
+def PantallaInicio():       #PANTALLA DE INCIO
+    print ("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-")
+    print ("Ingresa cualquier tecla")
+    print ("para empezar.")
+    print ("")
+    print ("                        O ingresa X para ir al")
+    print ("                                   al tutorial")
+    ini = input()
+    if ini == "x" or ini == "X":
+        Tutorial()          # FIN DE PANTALLA DE INICIO
 
+def GProblema(num):         #GENERADOR DE PROBLEMAS
+    if num==1:
+        Cod="0011001110110001011000010"
+        # a1 + c4 + e2 + d5 + b5
+    elif num==2:
+        Cod="1100011010000001110100011"
+        # e2 + c4 + c2 + b3 + a5
+    elif num==3:
+        Cod="0100000000001101100111011"
+        # a1 + a3 + d3 + c2 + b5
+    elif num==4:
+        Cod="0000100111000010101000100"
+        # c3 + a3 + e5 + b1 + e1
+    elif num==5:
+        Cod="1100010101001110100000000"
+        # d3 + a4 + e5 + c2 + e1
+    elif num==30:
+        Cod="0000000000000000000000000"
+        # Código para Debug
+    else:
+        print("No se ingresó generador de problema válido")
+    return Cod              #FIN DE GENERADOR DE PROBLEMAS
+
+#Se inician las variables priincipales
 letras = "ABCDE"
-Problema = "1111111011100011101111111"
 
+#Se crea y diseña la lista del problema
 ProblemaL = []
+CodProblema = 30           # -> CAMBIAR ESTO PARA EL FINAL "random.randint(1,5)"
+CodProblema = GProblema(CodProblema)
 
-for x in Problema:
+for x in CodProblema:
     ProblemaL.append(x)
 
-a = 0
-print ("     1  2  3  4  5")
-for x in range(5):
-    print (letras[x], " - ", end ='')
-    for y in range(5):
-        print (ProblemaL[(x*5+y)], " ", end = '')
-    print ("")
-    
+
 while True:
-    print (" Ingresa tu RPTA, primero LETRA Y NUMERO ")
+
+    #Impresora del Problema
+    print ("     1  2  3  4  5")
+    for x in range(5):
+        print (letras[x], " - ", end ='')
+        for y in range(5):
+            print (ProblemaL[(x*5+y)], " ", end = '')
+        print ("")
+    
+
+    #Se ingresa la rpta
+    print (" > Ingresa tu RPTA, primero LETRA Y NUMERO ")
     rpta = str(input())
-    if validar(rpta):
-        break
-    else:
-        print ("Tu rpta es invalida")
-        print ("-------------------")
+    
+    #Se califica si es reset, entonces se regresa la lista a inicial
+    if rpta=="reset":
+        print ("R E I N I C I A N D O...")
+        time.sleep(2)
+        del ProblemaL[:]
+        for x in CodProblema:
+            ProblemaL.append(x)
+        continue
 
-print (" P R O C E S A N D O . . . ")
-time.sleep(2)
-
-cambio = []
-
-if rpta[0]=="A" or rpta[0]=="a":
-    cambio.append("1")
-if rpta[0]=="B" or rpta[0]=="b":
-    cambio.append("2")
-if rpta[0]=="C" or rpta[0]=="c":
-    cambio.append("3")
-if rpta[0]=="D" or rpta[0]=="d":
-    cambio.append("4")
-if rpta[0]=="E" or rpta[0]=="e":
-    cambio.append("5")
-
-cambio.append(rpta[1])
-
-k = (int(cambio[0])*5)-(5-int(cambio[1]))-1
-
-del cambio[:]
-cambio.append(int(k))
-cambio.append(int(k+1))
-cambio.append(int(k-1))
-cambio.append(int(k+5))
-cambio.append(int(k-5))
-
-print ("Iniciando cambio")
-for n in cambio:
-    print (n)
-    if n>=0:
-        if ProblemaL[n]=="1":
-            ProblemaL[n]="0"
+    #Caerá en un bucle caso sea invalida el ingreso
+    while True:    
+        if validar(rpta):
+            break
         else:
-            ProblemaL[n]="1"
+            time.sleep (1)
+            print ("- Tu rpta es invalida -")
+            print ("------------------------")
+            print ("Debes ingresar LETRA y NÚMERO")
+            rpta = str(input())
 
+    #Se inicia el procesamiento de la respuesta ingresada
+    print (" P R O C E S A N D O . . . ")
+    time.sleep(2)
 
-print ("     1  2  3  4  5")
-for x in range(5):
-    print (letras[x], " - ", end ='')
-    for y in range(5):
-        print (ProblemaL[(x*5+y)], " ", end = '')
-    print ("")
+    cambio = []
+
+    if rpta[0]=="A" or rpta[0]=="a":
+        cambio.append("1")
+    if rpta[0]=="B" or rpta[0]=="b":
+        cambio.append("2")
+    if rpta[0]=="C" or rpta[0]=="c":
+        cambio.append("3")
+    if rpta[0]=="D" or rpta[0]=="d":
+        cambio.append("4")
+    if rpta[0]=="E" or rpta[0]=="e":
+        cambio.append("5")
+
+    cambio.append(rpta[1])
+
+    #Se define un "punto clave"
+    k = (int(cambio[0])*5)-(5-int(cambio[1]))-1
+
+    #Se define la lista _Cambio_ a partir del punto clave
+    del cambio[:]
+    cambio.append(int(k))
+    if not (k%5==0):
+        cambio.append(int(k-1))
+    if (k not in (4, 9, 14, 19, 24)):
+        cambio.append(int(k+1))
+    cambio.append(int(k+5))
+    cambio.append(int(k-5))
+
+    #Ahora trabaja la lista cambio
+    for n in cambio:
+        if n>=0 and n<=24:
+            if ProblemaL[n]=="1":
+                ProblemaL[n]="0"
+            else:
+                ProblemaL[n]="1"
