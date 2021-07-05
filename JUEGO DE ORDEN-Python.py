@@ -89,11 +89,13 @@ def GProblema(num):         #GENERADOR DE PROBLEMAS
 
 PantallaInicio()
 
+
 print(" -INICIANDO JUEGO-")
 time.sleep(2)
 
 #Se inician las variables priincipales
 letras = "ABCDE"
+LMov = []
 
 #Se crea y diseña la lista del problema
 ProblemaL = []
@@ -104,9 +106,16 @@ for x in CodProblema:
     ProblemaL.append(x)
 
 
-while True:
+while True:                 #Inicial el loop del juego 
     
     os.system("cls")
+
+    #Se imprime la lista de movimientos
+    print ("[ ", end = '')
+    for x in LMov:
+        print (x," - ", end='')
+    print (" ]")
+
     #Impresora del Problema
     print ("     1  2  3  4  5")
     for x in range(5):
@@ -125,6 +134,7 @@ while True:
         print ("R E I N I C I A N D O...")
         time.sleep(2)
         del ProblemaL[:]
+        del LMov[:]
         for x in CodProblema:
             ProblemaL.append(x)
         continue
@@ -140,9 +150,11 @@ while True:
             print ("Debes ingresar LETRA y NÚMERO")
             rpta = str(input())
 
-    #Se inicia el procesamiento de la respuesta ingresada
+    #Se inicia el procesamiento de la respuesta ingresada, a su vez se guarda
     print (" P R O C E S A N D O . . . ")
     time.sleep(1)
+
+    LMov.append(rpta)
 
     cambio = []
 
