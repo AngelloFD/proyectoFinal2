@@ -4,7 +4,7 @@ import time
 import random
 
 def Tutorial():             #TUTORIAL
-    for i in range (4):
+    for i in range (5):
         os.system("cls")
         if i % 2==0:
             print("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-") 
@@ -33,7 +33,6 @@ def Tutorial():             #TUTORIAL
             print("ejemplo de la derecha",end=" ")
             print("             -B2-")
         time.sleep(2)
-    time.sleep(2)
     print("¿listo?")
     time.sleep(3)           # FIN TUTORIAL
 
@@ -53,6 +52,7 @@ def validar(rpta):          #VALIDACIÓN DE RPTA
     return vera             #FIN DE VALIDACION RPTA
 
 def PantallaInicio():       #PANTALLA DE INCIO
+    os.system("cls")
     print ("-_-_-_-_-_-_-_JUEGO DE ORDEN_-_-_-_-_-_-_-_-_-")
     print ("Ingresa cualquier tecla")
     print ("para empezar.")
@@ -86,12 +86,18 @@ def GProblema(num):         #GENERADOR DE PROBLEMAS
         print("No se ingresó generador de problema válido")
     return Cod              #FIN DE GENERADOR DE PROBLEMAS
 
+
+PantallaInicio()
+
+print(" -INICIANDO JUEGO-")
+time.sleep(2)
+
 #Se inician las variables priincipales
 letras = "ABCDE"
 
 #Se crea y diseña la lista del problema
 ProblemaL = []
-CodProblema = 30           # -> CAMBIAR ESTO PARA EL FINAL "random.randint(1,5)"
+CodProblema = random.randint(1,5)                    # -> CAMBIAR ESTO PARA EL FINAL "random.randint(1,5)"
 CodProblema = GProblema(CodProblema)
 
 for x in CodProblema:
@@ -136,7 +142,7 @@ while True:
 
     #Se inicia el procesamiento de la respuesta ingresada
     print (" P R O C E S A N D O . . . ")
-    time.sleep(2)
+    time.sleep(1)
 
     cambio = []
 
