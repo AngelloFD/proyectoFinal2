@@ -212,3 +212,6 @@ for x in range(5):
     print ("")
 print ("")
 print (" _-_- GANASTE -_-_ ")
+
+time.sleep(2)
+input()
